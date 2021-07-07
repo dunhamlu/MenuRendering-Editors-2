@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../DunhamLuWEB/Library/css/reset.css"><!-- 重置样式 -->
+    <link rel="stylesheet" href="index.css">
+    <script src="jquery-1.8.2.min.js"></script>
+</head>
+
+<body>
+    <ul id="BKname">
+        <!-- <li class="N1">156646431,dsfuh</li>
+        <li class="N2">156646431,dsfuh</li>
+        <li class="N3">156646431,dsfuh</li>
+        <li class="N4">156646431,dsfuh</li>
+        <li class="N5">156646431,dsfuh</li> -->
+    </ul>
+   <script>
+       $.ajax("bookname.json")
+       .then(doneFn,failFn);
+       function doneFn(data){
+          renderToDom(data);
+          //console.log(data);
+       }
+
+       function failFn(){
+       	  alert('连接失败');
+       }
+
+       function renderToDom(data){
+           var html='';
+           $.each(data,function(i,obj){
+               //console.log(data.key[1]);
+               for (var i = data.key.length - 1,k=0; i >= 0; i--) {
+               	//console.log('第'+i+data.key[i]);
+                //console.log(k=i+1);
+               	$("ul").prepend('<li>'+'第'+k+'章 '+data.key[i]+'</li>');
+               }
+           })
+       }
+	</script>
+</body>
+
+</html>
